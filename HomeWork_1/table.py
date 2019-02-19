@@ -14,6 +14,6 @@ def element(num):
     elif num == 17:
         return 'Cl'
     else:
-        return 0
+        return 'Ошибка ввода'
 
 print(element(int(input("Введите номер элемента:\n"))))

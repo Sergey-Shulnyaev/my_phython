@@ -26,11 +26,15 @@ def vibor_film(film,time):
             return 450
         elif time == 18:
             return 450
+    else:
+        return 0
 
 def skidka(data,numbil):
     a = 1
     if data == 'Завтра' or data == 'завтра':
         a -= 0.05
+    elif data != 'сегодня' or data != 'Сегодня':  
+        return 0
     if numbil >= 20:
         a -= 0.2
     return a
@@ -39,4 +43,10 @@ film = input('Сейчас в кино фильмы:"Пятница", "Чемп�
 data = input('Введите дату сеанса:\t')
 time = int(input('Введите время сеанса:\t'))
 numbil = int(input('Укажите количество билетов:\t'))
-print(vibor_film(film,time) * skidka(data,numbil) * numbil)
+a = vibor_film(film,time) 
+b = skidka(data,numbil) * numbil
+if a * b == 0:
+    print('Ошибка ввода')
+else:
+    print('Стоимость булетов будет:',a*b)
+    
