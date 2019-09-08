@@ -7,7 +7,7 @@
 import random
 import math
 
-class hero():
+class Hero():
     def __init__(self, name, coord = [0,0], health = 10, speed = 1, damage = 1, inventory = []):
         self.name = name
         self.health = health 
@@ -37,17 +37,17 @@ class hero():
         self.health -= damage
 
         
-class field():
+class Field():
     def __init__(self, size=(40,40)):
         self.artifacts = {(-5,-5):('MagicBullet',10,10),(5,5):('CannonOfWisdom',20,20)}
         self.size = size
     def pickingItem(self, coord):
         self.artifacts.pop(coord)
         
-h1 = hero('Gendalf',[5,5])
-h2 = hero('Smaug',[-5,-5])
+h1 = Hero('Gendalf',[5,5])
+h2 = Hero('Smaug',[-5,-5])
 heroDict= {'Gendalf' : h1, 'Smaug' : h2}
-gameField = field()
+gameField = Field()
 
 
 gameend = 0
