@@ -38,7 +38,8 @@ class Car():
         return self.__year
     def get_breakage(self):
         return self.__breakage
-class Сompany():
+
+class Company():
     
     def __init__(self, money, brandDict, modelDict, breakageDict):
         self.__money = money
@@ -53,25 +54,33 @@ class Сompany():
         
     def take_car(self, client):
         car = client.get_car()
-        cost = self.brandDict[car.get_brand] * self.modelDict[car.get_model] * self.breakageDict[car.get_breakage]
-        if client.get_money > cost:
-            self.dataBase.append([len(dataBase),client.get_name, client.get_address, client.get_phoneNumber,car])
-            client.pay_money(self)
-            return 1
-        else:
-            return 0
-        
+        cost = self.__brandDict[car.get_brand] * self.__modelDict[car.get_model] * self.__breakageDict[car.get_breakage]
+        print("Здравствуйте,{0}, у вашего автомобиля сломалось {1}, стоимость починки равна {2} рублей, желаете ли вы воспользоваться нашими услугами?('Да','Нет')".format(client.get_name,car.get_breakage,cost)) 
+        answer = input()
+        if answer == 'Да':
+            if client.get_money > cost:
+                self.dataBase.append([len(dataBase),client.get_name, client.get_address, client.get_phoneNumber,car])
+                client.pay_money(self)
+                print("Спасибо, что пользуйтесь услугами Ультрагайки. До свидания")
+                return 1
+            else:
+                print("У вас не хватает денег. До свидания.")
+                return 0
+        elif answer == 'Нет':
+            print("Ну и ладно, не очень то и хотелось")
         
         
         
     
 brandDict = {'Mercedes': 2,'Porsche' : 3,'BMW': 1.99}
 modelDict = {"Седан" : 1, "Универсал" : 1.1, "Микроавтобус" : 1.5, "Минивэн" : 1.3, "Лимузин" : 1.9}  
-breakageDict= {"Диагностика автомобиля" : 500, "Ходовая часть" : 15000, "Развал схождения" : 2000,
-               "Рулевого управление" : 10000, "Замена масла" : 1000, "Электрика" : 10000,
+breakageDict= { "Ходовая часть" : 15000, "Развал схождения" : 2000,
+               "Рулевого управление" : 10000, "Электрика" : 10000,
                "Двигатель" : 20000, "Тормозные системы" : 6000, "Замена жидкостей и фильтров" : 2000,
-               "Стёкла" : 7000, "Система впрыска и зажигания" : 4000, "Выхлопная система" : 2000, "Шиномонтаж" : 4765}
+               "Стёкла" : 7000, "Система впрыска и зажигания" : 4000, "Выхлопная система" : 2000}
 car = Car(brandDict, modelDict, breakageDict)
 client = Customer("Петров Пётр Петрович", "г. Саратов, Провиантская ул., д. 11, кв. 45", "+71000000000",
                  80000, car)
-print("Здравствуйте, у вашего автомобиля 
+comp = Company(10000, brandDict, modelDict, breakageDict)
+comp.take_car(client)
+print(comp.money)
