@@ -21,7 +21,7 @@ class MyCosts:
         self.cb_var5 = tkinter.IntVar()
         self.cb_var6 = tkinter.IntVar()
         self.cb_var7 = tkinter.IntVar()
-        
+        self.cb = [tkinter.IntVar() for i in range(7)]
 
         
         self.cb_var1.set(0)
@@ -31,29 +31,32 @@ class MyCosts:
         self.cb_var5.set(0)
         self.cb_var6.set(0)
         self.cb_var7.set(0)
+        
+        for i in self.cb:
+            i.set(0)
 
         
         self.cb1 = tkinter.Checkbutton(self.top_frame,
                                        text='Замена масла - $30.00',
-                                       variable=self.cb_var1)
+                                       variable=self.cb[0])
         self.cb2 = tkinter.Checkbutton(self.top_frame,
                                        text='Смазочные работы - $20.00',
-                                       variable=self.cb_var2)
+                                       variable=self.cb[1])
         self.cb3 = tkinter.Checkbutton(self.top_frame,
                                        text='Промывка радиатора - $40.00',
-                                       variable=self.cb_var3)
+                                       variable=self.cb[2])
         self.cb4 = tkinter.Checkbutton(self.top_frame,
                                        text='Замена жидкости в трансмиссии - $100.00',
-                                       variable=self.cb_var4)
+                                       variable=self.cb[3])
         self.cb5 = tkinter.Checkbutton(self.top_frame,
                                        text='Осмотр - $35.00',
-                                       variable=self.cb_var5)
+                                       variable=self.cb[4])
         self.cb6 = tkinter.Checkbutton(self.top_frame,
                                        text='Замена глушителя выхлопа - $200.00',
-                                       variable=self.cb_var6)
+                                       variable=self.cb[5])
         self.cb7 = tkinter.Checkbutton(self.top_frame,
                                        text='Пестановка шин - $20.00',
-                                       variable=self.cb_var7)
+                                       variable=self.cb[6])
 
         
         self.cb1.pack()
@@ -88,19 +91,19 @@ class MyCosts:
 
         self.cost = 0
 
-        if self.cb_var1.get() == 1:
+        if self.cb[0].get() == 1:
             self.cost += 30.00
-        if self.cb_var2.get() == 1:
+        if self.cb[1].get() == 1:
             self.cost += 20.00
-        if self.cb_var3.get() == 1:
+        if self.cb[2].get() == 1:
             self.cost += 40.00
-        if self.cb_var4.get() == 1:
+        if self.cb[3].get() == 1:
             self.cost += 100.00
-        if self.cb_var5.get() == 1:
+        if self.cb[4].get() == 1:
             self.cost += 35.00
-        if self.cb_var6.get() == 1:
+        if self.cb[5].get() == 1:
             self.cost += 200.00
-        if self.cb_var7.get() == 1:
+        if self.cb[6].get() == 1:
             self.cost += 20.00
 
        
